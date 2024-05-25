@@ -1,13 +1,69 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title  %}Main page{% endblock %}
+{% block content %}
 
-    <p>helllo app <h1>HELLO APP TEST</h1></p>
-    
-</body>
-</html>
+<div class="container">
+    <h1>Enter data form</h1>
+
+    <div class="row justify-content-md-center">
+        <div class="col-md-5">
+            <form>
+                <div class="mb-3">
+                    <label for="" class="form-label">Formula</label>
+                    <input type="text" name="formula" id="" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Crystal Structure</label>
+                    <input type="text" name="crystal_structure" id="" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">All electrons (Total)</label>
+                    <input type="text" name="allelectrons_Total" id="" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Density (Total)</label>
+                    <input type="text" name="density_Total" id="" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">All electrons (Average)</label>
+                    <input type="text" name="allelectrons_Average" id="" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Val e (Average)</label>
+                    <input type="text" name="val_e_Average" id="" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Atomic weight (Average)</label>
+                    <input type="text" name="atomicweight_Average" id="" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Ion energy (Average)</label>
+                    <input type="text" name="ionenergy_Average" id="" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">El negative chi (Average)</label>
+                    <input type="text" name="el_neg_chi_Average" id="" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">R vdw element (Average)</label>
+                    <input type="text" name="R_vdw_element_Average" id="" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">R cov element (Average)</label>
+                    <input type="text" name="R_cov_element_Average" id="" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Za ratio (Average)</label>
+                    <input type="text" name="zaratio_Average" id="" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Density (Average)</label>
+                    <input type="text" name="density_Average" id="" class="form-control">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
