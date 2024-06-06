@@ -112,7 +112,9 @@ def predict():
 
     prediction_str = str(prediction_float)
 
-    return jsonify({'prediction': prediction_str})
+    # return jsonify({'prediction': prediction_str})
+
+    return render_template("results.html", prediction_str=prediction_str)
 
 
 if __name__ == "__main__":
