@@ -2,63 +2,67 @@
 {% block title  %}Main page{% endblock %}
 {% block content %}
 
-<div class="container">
+<div class="container mt-4">
     <h1>Enter data form</h1>
 
     <div class="row justify-content-md-center">
         <div class="col-md-5">
-            <form>
-                <div class="mb-3">
+            <form action="/predict" method="post">
+                <!-- <div class="mb-3">
                     <label for="" class="form-label">Formula</label>
                     <input type="text" name="formula" id="" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Crystal Structure</label>
                     <input type="text" name="crystal_structure" id="" class="form-control">
-                </div>
+                </div> -->
                 <div class="mb-3">
                     <label for="" class="form-label">All electrons (Total)</label>
-                    <input type="text" name="allelectrons_Total" id="" class="form-control">
+                    <input type="number" step="any" name="allelectrons_Total" id="" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Density (Total)</label>
-                    <input type="text" name="density_Total" id="" class="form-control">
+                    <input type="number" step="any" name="density_Total" id="" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">All electrons (Average)</label>
-                    <input type="text" name="allelectrons_Average" id="" class="form-control">
+                    <input type="number" step="any" name="allelectrons_Average" id="" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Val e (Average)</label>
-                    <input type="text" name="val_e_Average" id="" class="form-control">
+                    <input type="number" step="any" name="val_e_Average" id="" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Atomic weight (Average)</label>
-                    <input type="text" name="atomicweight_Average" id="" class="form-control">
+                    <input type="number" step="any" name="atomicweight_Average" id="" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Ion energy (Average)</label>
-                    <input type="text" name="ionenergy_Average" id="" class="form-control">
+                    <input type="number" step="any" name="ionenergy_Average" id="" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">El negative chi (Average)</label>
-                    <input type="text" name="el_neg_chi_Average" id="" class="form-control">
+                    <input type="number" step="any" name="el_neg_chi_Average" id="" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">R vdw element (Average)</label>
-                    <input type="text" name="R_vdw_element_Average" id="" class="form-control">
+                    <input type="number" step="any" name="R_vdw_element_Average" id="" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">R cov element (Average)</label>
-                    <input type="text" name="R_cov_element_Average" id="" class="form-control">
+                    <input type="number" step="any" name="R_cov_element_Average" id="" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Za ratio (Average)</label>
-                    <input type="text" name="zaratio_Average" id="" class="form-control">
+                    <input type="number" step="any" name="zaratio_Average" id="" class="form-control">
                 </div>
                 <div class="mb-3">
                     <label for="" class="form-label">Density (Average)</label>
-                    <input type="text" name="density_Average" id="" class="form-control">
+                    <input type="number" step="any" name="density_Average" id="" class="form-control">
+                </div>
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
