@@ -3,6 +3,8 @@ import numpy as np
 import pandas as pd
 import json
 
+from flask_mysqldb import MySQL
+
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1' 
 
@@ -11,6 +13,14 @@ import tensorflow as tf
 import tensorflow_probability as tfp
 
 app = Flask(__name__)
+
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'mohs_hardness_app'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
+mysql = MySQL(app)
 
 features = [ 'log10_allelectrons_Total', 'log10_density_Total',
        'log10_allelectrons_Average', 'log10_val_e_Average',
@@ -86,6 +96,33 @@ def preprocess_input(form_data, expected_data_types):
 
     return input_df
 
+def save_data(form_data, prediction_float):
+    allelectrons_Total = form_data['allelectrons_Total']
+    density_Total = form_data['density_Total']
+    allelectrons_Average = form_data['allelectrons_Average']
+    val_e_Average = form_data['val_e_Average']
+    atomicweight_Average = form_data['atomicweight_Average']
+    ionenergy_Average = form_data['ionenergy_Average']
+    el_neg_chi_Average = form_data['el_neg_chi_Average']
+    R_vdw_element_Average = form_data['R_vdw_element_Average']
+    R_cov_element_Average = form_data['R_cov_element_Average']
+    zaratio_Average = form_data['zaratio_Average']
+    density_Average = form_data['density_Average']
+
+    cursor = mysql.connection.cursor()
+
+    cursor.execute(''' INSERT INTO results (allelectrons_Total, density_Total, allelectrons_Average, 
+                             val_e_Average, atomicweight_Average, ionenergy_Average,
+                             el_neg_chi_Average, R_vdw_element_Average, R_cov_element_Average,
+                             zaratio_Average, density_Average, predicted_hardness) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) ''', 
+                            (allelectrons_Total, density_Total, allelectrons_Average, 
+                             val_e_Average, atomicweight_Average, ionenergy_Average,
+                             el_neg_chi_Average, R_vdw_element_Average, R_cov_element_Average,
+                             zaratio_Average, density_Average, prediction_float))
+
+    mysql.connection.commit()
+    cursor.close()
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -112,10 +149,28 @@ def predict():
 
     prediction_str = str(prediction_float)
 
+    save_data(form_data, prediction_float)
+
     # return jsonify({'prediction': prediction_str})
 
     return render_template("results.html", prediction_str=prediction_str)
 
+@app.route("/history")
+def history():
+
+    cursor = mysql.connection.cursor()
+
+    cursor.execute(''' SELECT * FROM results ''')
+
+    previous_preds = cursor.fetchall()
+
+    mysql.connection.commit()
+    cursor.close()
+
+    print(previous_preds)
+
+    return render_template("history.html", previous_preds=previous_preds)
+        
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title  %}History page{% endblock %}
+{% block content %}
+
+<div class="container mt-4">
+    <h1>Mohs Hardness Results History</h1>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">allelectrons_Total</th>
+                <th scope="col">density_Total</th>
+                <th scope="col">allelectrons_Average</th>
+                <th scope="col">val_e_Average</th>
+                <th scope="col">atomicweight_Average</th>
+                <th scope="col">ionenergy_Average</th>
+                <th scope="col">el_neg_chi_Average</th>
+                <th scope="col">R_vdw_element_Average</th>
+                <th scope="col">R_cov_element_Average</th>
+                <th scope="col">zaratio_Average</th>
+                <th scope="col">density_Average</th>
+                <th scope="col">predicted_hardness</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for row in previous_preds %}
+                    <tr>
+                    <th scope="row">{{ row.id }}</th>
+                    <td>{{ row['allelectrons_Total'] }}</td>
+                    <td>{{ row['density_Total'] }}</td>
+                    <td>{{ row['allelectrons_Average'] }}</td>
+                    <td>{{ row['val_e_Average'] }}</td>
+                    <td>{{ row['atomicweight_Average'] }}</td>
+                    <td>{{ row['ionenergy_Average'] }}</td>
+                    <td>{{ row['el_neg_chi_Average'] }}</td>
+                    <td>{{ row['R_vdw_element_Average'] }}</td>
+                    <td>{{ row['R_cov_element_Average'] }}</td>
+                    <td>{{ row['zaratio_Average'] }}</td>
+                    <td>{{ row['density_Average'] }}</td>
+                    <td>{{ row['predicted_hardness'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+{% endblock %}
